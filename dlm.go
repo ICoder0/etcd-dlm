@@ -5,7 +5,7 @@ import (
 	"errors"
 	"log"
 
-	"etcd-dlm/etcd"
+	"github.com/ICoder0/etcd-dlm/etcd"
 	clientv3 "go.etcd.io/etcd/client/v3"
 )
 
