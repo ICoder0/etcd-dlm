@@ -47,12 +47,12 @@ func Lock(ctx context.Context, cli *clientv3.Client, cfg DlmConfig) (err error, 
 		}
 		// 抢锁成功，设置续租
 		go func() {
-
 			defer func() {
-				cfg.CloseFunc()
+				if cfg.CloseFunc != nil {
+					cfg.CloseFunc()
+				}
 				_ = etcd.Revoke(ctx, cli, grant.ID)
 			}()
-
 			for {
 				select {
 				case leaseKeepResp := <-leaseRespChan:
@@ -64,7 +64,6 @@ func Lock(ctx context.Context, cli *clientv3.Client, cfg DlmConfig) (err error, 
 			}
 		}()
 	}
-
 	revokeFc := func() {
 		_ = etcd.Revoke(ctx, cli, grant.ID)
 	}
