@@ -1,4 +1,4 @@
-module etcd-dlm
+module github.com/ICoder0/etcd-dlm
 
 go 1.16
 
