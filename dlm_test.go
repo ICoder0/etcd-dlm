@@ -16,7 +16,7 @@ func TestLock(t *testing.T) {
 	ctx := context.TODO()
 
 	conf := clientv3.Config{
-		Endpoints:   []string{"http://10.10.101.75:32379"},
+		Endpoints:   []string{"http://127.0.0.1:2379"},
 		DialTimeout: 3 * time.Second,
 		DialOptions: []grpc.DialOption{grpc.WithBlock()},
 	}
